@@ -14,7 +14,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +40,7 @@ import lombok.ToString;
 public class Author {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -43,30 +48,30 @@ public class Author {
 	@Embedded
 	private Identity identity;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(
 			name = "AUTHOR_BOOK",
 			joinColumns = {@JoinColumn(name = "author_id")},
 			inverseJoinColumns = {@JoinColumn(name = "book_id")}
 			)
 	@Singular("book")
-	private Set<Book> books;
+	@LazyCollection(LazyCollectionOption.EXTRA)
+	@OrderColumn(name = "name")
+	private Set<CreateBook> books = new HashSet<>();
 	
 	public Author() {
 		
 	}
 	
-	public Author(Long id, String name, Identity identity, Set<Book> books) {
+	@Builder
+	public Author(Long id, String name, Identity identity) {
 		this.id = id;
 		this.name = name;
-		this.identity = identity;
-		this.books = books;				
-		
+		this.identity = identity;						
 	}
-
-	public void add(Book book) {
+	
+	public void addBook(CreateBook book) {
 		this.books.add(book);
-		
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.bookstore.payment1.service;
 
+import java.util.Optional;
+
 import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,10 @@ public class AuthorService {
 	
 	public Author loadReference(String identification) {
 		return entityManager.getReference(Author.class, 1L);
+	}
+	
+	public Optional<Author> loadWithBooks(String identity) {
+		return this.authorRepository.findWithBooks(identity);
 	}
 	
 }
