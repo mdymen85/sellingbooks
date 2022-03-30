@@ -11,13 +11,13 @@ import lombok.ToString;
 @ToString
 public class Identity {
 
-	private String identity;
+	private String personalNumber;
 	
 	public Identity() {}
 	
 	@Builder
-	public Identity(String identity) {
-		this.identity = identity;
+	public Identity(String personalNumber) {
+		this.personalNumber = personalNumber;
 	}
 	
 	

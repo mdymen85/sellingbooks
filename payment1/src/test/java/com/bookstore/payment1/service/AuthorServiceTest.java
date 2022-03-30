@@ -13,7 +13,7 @@ import com.bookstore.payment1.model.book.Author;
 import com.bookstore.payment1.model.book.CreateBook;
 import com.bookstore.payment1.model.book.Identity;
 import com.bookstore.payment1.model.book.UpdateBook;
-import com.bookstore.payment1.repository.AuthorRepository;
+import com.bookstore.payment1.repository.impl.AuthorRepository;
 
 @SpringBootTest
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -23,7 +23,7 @@ public class AuthorServiceTest {
 	private AuthorRepository authorRepository;
 	
 	@Autowired
-	private AuthorService authorService;
+	private IAuthorService authorService;
 	
 	@Autowired
 	private DelegateRepository txDelegate;
@@ -57,7 +57,7 @@ public class AuthorServiceTest {
 				.name("Bini")
 				.build();
 		
-		var book = CreateBook.builder()
+		var book1 = CreateBook.builder()
 				.authors(Set.of(author))
 				.name("Lie")
 				.build();
@@ -67,10 +67,10 @@ public class AuthorServiceTest {
 				.name("Treta")
 				.build();
 		
-		author.addBook(book);
+		author.addBook(book1);
 		author.addBook(book2);
 		
-		var authorSaved = this.txDelegate.save(author);
+		var authorSaved1 = this.txDelegate.save(author);
 
 		author = Author.builder()
 				.identity(new Identity("D1234"))
@@ -78,28 +78,8 @@ public class AuthorServiceTest {
 				.build();
 		
 		var authorSaved2 = this.txDelegate.save(author);
-		
-//		author.addBook(Book.builder()
-//				.authors(Set.of(Author)));
-				
-		
-		
-//		var author = Author.builder()
-//				.books(AuthorBook.builder()
-//						.author(author))
-		
-		
-//		var author = Author.builder()
-//				.name("Bini Stein")
-//				.identity(new Identity("ID1234"))
-//				.book(Book.builder()
-//						.name("Truth")
-//						.build())				
-//				.build();		
-//		
-//		var authorSaved = this.txDelegate.save(author);
-//			
-		var authorLoaded = authorRepository.findByIdentityIdentity(authorSaved.getIdentity().getIdentity()).get();			
+			
+		var authorLoaded = authorRepository.findByIdentityPersonalNumber(authorSaved1.getIdentity().getPersonalNumber()).get();			
 		
 		var updatebook = UpdateBook.builder()
 				.authors(Set.of(authorLoaded, authorSaved2))
@@ -108,23 +88,12 @@ public class AuthorServiceTest {
 		
 		this.txDelegate.save(updatebook);
 				
-				
-//		book = Book.builder()
-//			.name("Lies")
-//			.authors(Set.of(authorLoaded))
-//			.build();
+		authorLoaded.addBook(book1);
 		
-		authorLoaded.addBook(book);
+		authorSaved1 = this.txDelegate.save(authorLoaded);
 		
-		authorSaved = this.txDelegate.save(authorLoaded);
 		
-//		authorLoaded.add(book);
-//		
-//		var newSaved = this.txDelegate.save(authorLoaded);
-//		
-//		var authorx = authorService.loadWithBooks(authorSaved.getIdentity().getIdentity()).get();
-//		
-		System.out.println(authorSaved);
+		
 
 	}
 	
