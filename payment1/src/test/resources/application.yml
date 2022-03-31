@@ -1,24 +1,11 @@
-#spring:
-#  active:
-#    profile: test
-#  datasource:
-#    driverClassName: org.h2.Driver
-#    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
-#  jpa:
-#    show-sql: true
-
 spring:
   active:
     profile: test
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/sellingbooks?allowPublicKeyRetrieval=true&autoReconnect=true
-    username: root
-    password: mdymen_pass
-    driver-class-name: com.mysql.jdbc.Driver
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: create-drop
 
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect

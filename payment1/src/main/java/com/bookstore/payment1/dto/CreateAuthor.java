@@ -11,12 +11,13 @@ import lombok.ToString;
 @Data
 @ToString
 @RequiredArgsConstructor
+@Builder
 public class CreateAuthor {
 	
 	private final String name;
 	
 	@Singular("book")
-	private final List<Book> books;
+	private final List<CreateBook> books;
 	
 	
 	

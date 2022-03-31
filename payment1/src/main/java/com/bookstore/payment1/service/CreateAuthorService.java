@@ -2,6 +2,8 @@ package com.bookstore.payment1.service;
 
 import javax.persistence.EntityManager;
 
+import com.bookstore.payment1.repository.AuthorRepository;
+import com.bookstore.payment1.repository.AuthorServiceRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class CreateAuthorService {
 
-	
+	private final AuthorMapper authorMapper;
+	private final AuthorServiceRepository authorServiceRepository;
+
 	public AuthorCreated createAuthor(CreateAuthor createAuthor) {
 		
-		
-		
+		var author = authorMapper.to(createAuthor);
+
+		this.authorServiceRepository.createAuthor(author);
+
+		//authorMapper.to
 		
 		// TODO Auto-generated method stub
 		return null;
