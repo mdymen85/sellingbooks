@@ -1,35 +1,35 @@
 package com.bookstore.payment1.repository.model;
 
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
+@Data
 @ToString
 @Entity
 @Table(name = "SB_BOOKS")
+@NoArgsConstructor
 public class BookEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private final String name;
-    private final int pages;
-    private final BigInteger uuid;
+    private String name;
+    private int pages;
 
-    public BookEntity() {
-        this.name = null;
-        this.pages = 0;
-        this.uuid  = null;
-    }
+    @Column(name = "UUID", precision = 40, scale = 0)
+    private BigDecimal uuid;
 
     @Builder
-    public BookEntity(String name, int pages, BigInteger uuid) {
+    public BookEntity(String name, int pages, BigDecimal uuid) {
         this.name = name;
         this.pages = pages;
         this.uuid = uuid;
     }
-
 }

@@ -1,44 +1,36 @@
 package com.bookstore.payment1.repository.model;
 
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Singular;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Set;
 
-@ToString
+@Data
 @Entity
 @Table(name="SB_AUTHOR")
+@NoArgsConstructor
 public class AuthorEntity {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private final String name;
+    private String name;
 
-    private final BigInteger uuid;
+    @Column(name = "UUID", precision = 40, scale = 0)
+    private BigDecimal uuid;
 
     @Singular
-    @OneToMany
-    private final Set<BookEntity> books;
-
-    public AuthorEntity(){
-        this.name = null;
-        this.books = null;
-        this.uuid = null;
-    }
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private Set<BookEntity> books;
 
     @Builder
-    public AuthorEntity(String name, Set<BookEntity> books, BigInteger uuid) {
+    public AuthorEntity(String name, Set<BookEntity> books, BigDecimal uuid) {
         this.name = name;
         this.books = books;
         this.uuid = uuid;
     }
-
 }

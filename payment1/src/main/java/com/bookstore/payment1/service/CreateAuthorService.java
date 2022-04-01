@@ -28,10 +28,7 @@ public class CreateAuthorService {
 
 		this.authorServiceRepository.createAuthor(author);
 
-		//authorMapper.to
-		
-		// TODO Auto-generated method stub
-		return null;
+		return this.authorMapper.to(author);
 	}
 	
 //	public Author save(Author author) {

@@ -8,19 +8,30 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.List;
+import java.util.Set;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AuthorRepositoryMapper {
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "uuid", target = "uuid")
+    @Mapping(target = "name", source = "author.name")
+    @Mapping(target = "uuid", source = "author.id")
     AuthorEntity to(Author author);
+
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "pages", source = "pages")
+    @Mapping(target = "uuid", source = "id")
+    BookEntity to(Book book);
+
+    List<BookEntity> to(List<Book> books);
+
+    @Mapping(target = "id", source = "uuid")
+    @Mapping(target = "name", source = "name")
+    Author to(AuthorEntity authorEntity);
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "pages", target = "pages")
-    @Mapping(source = "uuid", target = "uuid")
-    BookEntity to(Book book);
+    @Mapping(source = "uuid", target = "id")
+    Book to(BookEntity bookEntity);
 
-    List<BookEntity> to(List<Book> book);
-
+    Set<Book> to(Set<BookEntity> books);
 }
