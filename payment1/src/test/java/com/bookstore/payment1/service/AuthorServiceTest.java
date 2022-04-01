@@ -1,17 +1,11 @@
 package com.bookstore.payment1.service;
 
-import java.util.Set;
-
 import com.bookstore.payment1.dto.CreateAuthor;
 import com.bookstore.payment1.dto.CreateBook;
 import com.bookstore.payment1.repository.AuthorRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-
-import com.bookstore.payment1.DelegateRepository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -69,12 +63,25 @@ public class AuthorServiceTest {
 
         var authorEntity = this.authorRepository.findByUuid(authorCreated.getId()).get();
 
-        var bookEntity1 = authorEntity.getBooks().stream().filter(b -> b.getName().equals(book1.getName())).findAny().get();
+        var bookEntity1 = authorEntity
+                .getBooks()
+                .stream()
+                .filter(b -> b.getName().equals(book1.getName()))
+                .findAny()
+                .get();
 
         assertEquals(bookEntity1.getPages(), book1.getPages());
         assertEquals(bookEntity1.getName(), book1.getName());
 
+        var bookEntity2 = authorEntity
+                .getBooks()
+                .stream()
+                .filter(b -> b.getName().equals(book2.getName()))
+                .findAny()
+                .get();
 
+        assertEquals(bookEntity2.getPages(), book2.getPages());
+        assertEquals(bookEntity2.getName(), book2.getName());
     }
 	
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 public class AuthorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -24,7 +24,7 @@ public class AuthorEntity {
     private BigDecimal uuid;
 
     @Singular
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<BookEntity> books;
 
     @Builder

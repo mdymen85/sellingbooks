@@ -13,8 +13,8 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface AuthorRepositoryMapper {
 
-    @Mapping(target = "name", source = "author.name")
-    @Mapping(target = "uuid", source = "author.id")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "uuid", source = "id")
     AuthorEntity to(Author author);
 
     @Mapping(target = "name", source = "name")
