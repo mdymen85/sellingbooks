@@ -11,6 +11,8 @@ import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.Route;
 import org.apache.camel.component.jackson.JacksonDataFormat;
+import org.apache.camel.impl.DefaultCamelContext;
+import org.apache.camel.model.RouteDefinition;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,17 +43,6 @@ public class CreateAuthorService {
 		var author = authorMapper.to(createAuthor);
 
 		this.authorServiceRepository.createAuthor(author);
-
-		JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Author.class);
-
-//		var route = new RouteBuilder() {
-//
-//			@Override
-//			public void configure() throws Exception {
-//				from("direct:startQueuePoint").id("idOfQueueHere").marshal(jsonDataFormat)
-//						.to("rabbitmq://localhost:5672/amq.fanout?queue=x2&autoDelete=false").end();
-//			}
-//		};
 
 		template.asyncSendBody(template.getDefaultEndpoint(), author);
 
