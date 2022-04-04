@@ -1,25 +1,18 @@
-package com.bookstore.payment1.service;
+package com.bookstore.payment2.camel;
 
-import com.bookstore.payment1.domain.Author;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class RabbitMQAuthor extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        JacksonDataFormat jsonDataFormat = new JacksonDataFormat(Author.class);
 
-//        from("timer:foo?period=1000000").routeId("idOfQueueHere").setBody()
-//                .constant("{\"x\":\"xxxx\"}")
-//                .log("Trying...")
-//                .to("spring-rabbitmq:amq.fanout")
-//                .log("Message sent:");
-
-        from("direct:startQueuePoint").id("idOfQueueHere").marshal(jsonDataFormat)
-                .to("spring-rabbitmq:amq.fanout").end();
+        from("rabbitmq:amq.direct?queue=x2&autoDelete=false").log("log ${body}");
 
     }
 

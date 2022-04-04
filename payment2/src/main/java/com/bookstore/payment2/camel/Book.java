@@ -1,9 +1,9 @@
-package com.bookstore.payment1.domain;
-
-import java.math.BigInteger;
+package com.bookstore.payment2.camel;
 
 import lombok.Getter;
 import lombok.ToString;
+
+import java.math.BigInteger;
 
 @Getter
 @ToString

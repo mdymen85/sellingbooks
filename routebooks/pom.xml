@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.2</version>
+		<version>2.6.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bookstore</groupId>
-	<artifactId>payment2</artifactId>
+	<artifactId>routebooks</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>payment2</name>
-	<description>Selling books online</description>
+	<name>routebooks</name>
+	<description>Route the books</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -32,22 +32,17 @@
 			<artifactId>camel-rabbitmq-starter</artifactId>
 			<version>3.15.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-jackson</artifactId>
 			<version>3.15.0</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 
