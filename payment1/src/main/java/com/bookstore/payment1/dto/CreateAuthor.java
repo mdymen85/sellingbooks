@@ -2,23 +2,18 @@ package com.bookstore.payment1.dto;
 
 import java.util.List;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.Singular;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
-@RequiredArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateAuthor {
 	
-	private final String name;
+	private String name;
 	
 	@Singular("book")
-	private final List<CreateBook> books;
-	
-	
+	private List<CreateBook> books;
 	
 }

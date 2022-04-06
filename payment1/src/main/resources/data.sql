@@ -23,6 +23,13 @@ create table sb_books (
     primary key (id)
 );
 
+create table sb_outbox (
+    id bigint auto_increment,
+    uuid decimal(40,0),
+    object_json text,
+    primary key (id)
+);
+
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mdymen_pass';
 
 -- docker run --name payments1-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mdymen_pass -d mysql:latest
