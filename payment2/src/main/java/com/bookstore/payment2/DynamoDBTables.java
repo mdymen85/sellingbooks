@@ -27,9 +27,9 @@ public class DynamoDBTables {
             Table table = dynamoDb.createTable(TABLE_NAME,
                     Arrays.asList(new KeySchemaElement("uuid", KeyType.HASH), // Partition
                             // key
-                            new KeySchemaElement("id", KeyType.RANGE)), // Sort key
+                            new KeySchemaElement("name", KeyType.RANGE)), // Sort key
                     Arrays.asList(new AttributeDefinition("uuid", ScalarAttributeType.N),
-                            new AttributeDefinition("id", ScalarAttributeType.S)),
+                            new AttributeDefinition("name", ScalarAttributeType.S)),
                     new ProvisionedThroughput(10L, 10L));
             table.waitForActive();
             System.out.println("Success.  Table status: " + table.getDescription().getTableStatus());

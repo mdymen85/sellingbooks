@@ -1,42 +1,22 @@
 package com.bookstore.payment2.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Singular;
-import lombok.ToString;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.*;
 
 import java.math.BigInteger;
 import java.util.Set;
 
-@Getter
+@DynamoDBTable(tableName="Author")
+@Data
 @ToString
 public class Author {
 
-	private final String name;
-	private final BigInteger id;
-	
-	@Singular("book")
-	private final Set<Book> books;
+	@DynamoDBHashKey
+	private String uuid;
 
-	public Author() {
-		this.id = null;
-		this.name = null;
-		this.books = null;
-	}
+	@DynamoDBRangeKey
+	private String name;
 
-	@Builder
-	public Author(BigInteger id, String name, Set<Book> books) {
-		this.name = name;
-		this.books = books;
-		this.id = id;
-	}
-	
-	public void addBook(Book book) {
-		if (this.books != null && !this.books.add(book)) {
-			throw new IllegalStateException();
-		}		
-	}
-	
-	
-	
 }
