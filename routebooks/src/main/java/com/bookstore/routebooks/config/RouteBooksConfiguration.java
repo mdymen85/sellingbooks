@@ -1,4 +1,4 @@
-package com.bookstore.routebooks;
+package com.bookstore.routebooks.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.jdbc.MysqlDataSource;

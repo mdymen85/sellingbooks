@@ -1,34 +1,37 @@
-package com.bookstore.routebooks;
+package com.bookstore.routebooks.model;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Singular;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Data
-@ToString
 @Entity
-@Table(name = "SB_BOOKS")
+@Table(name="SB_AUTHOR")
 @NoArgsConstructor
-public class BookEntity {
+public class AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private int pages;
 
     @Column(name = "UUID", precision = 40, scale = 0)
     private BigDecimal uuid;
 
+    @Singular
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<BookEntity> books;
+
     @Builder
-    public BookEntity(String name, int pages, BigDecimal uuid) {
+    public AuthorEntity(String name, Set<BookEntity> books, BigDecimal uuid) {
         this.name = name;
-        this.pages = pages;
+        this.books = books;
         this.uuid = uuid;
     }
 }

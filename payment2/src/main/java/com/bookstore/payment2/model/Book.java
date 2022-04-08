@@ -1,4 +1,4 @@
-package com.bookstore.payment2.camel;
+package com.bookstore.payment2.model;
 
 import lombok.Getter;
 import lombok.ToString;

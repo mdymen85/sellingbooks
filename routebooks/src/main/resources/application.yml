@@ -12,3 +12,7 @@ spring:
     password: mdymen_pass
   jpa:
     show-sql: true
+
+rabbitmq:
+  queue:
+    name: outbox-testing-queue

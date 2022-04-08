@@ -44,22 +44,9 @@ public class CreateAuthorService {
 
 		this.authorServiceRepository.createAuthor(author);
 
-		template.asyncSendBody(template.getDefaultEndpoint(), author);
+		//template.asyncSendBody(template.getDefaultEndpoint(), author);
 
 		return this.authorMapper.to(author);
 	}
-	
-//	public Author save(Author author) {
-//		log.info("Saveing: {}", author);
-//		return this.authorRepository.save(author);
-//	}
-//	
-//	public Author loadReference(String identification) {
-//		return entityManager.getReference(Author.class, 1L);
-//	}
-//	
-//	public Optional<Author> loadWithBooks(String identity) {
-//		return this.authorRepository.findWithBooks(identity);
-//	}
 	
 }

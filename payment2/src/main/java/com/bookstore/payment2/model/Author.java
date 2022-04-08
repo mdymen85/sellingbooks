@@ -1,4 +1,4 @@
-package com.bookstore.payment2.camel;
+package com.bookstore.payment2.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -32,7 +32,7 @@ public class Author {
 	}
 	
 	public void addBook(Book book) {
-		if (!this.books.add(book)) {
+		if (this.books != null && !this.books.add(book)) {
 			throw new IllegalStateException();
 		}		
 	}

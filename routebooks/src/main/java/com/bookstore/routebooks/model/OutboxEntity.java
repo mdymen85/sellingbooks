@@ -1,4 +1,4 @@
-package com.bookstore.routebooks;
+package com.bookstore.routebooks.model;
 
 import lombok.*;
 

@@ -4,6 +4,20 @@ spring:
     port: 5672
     username: guest
     password: guest
+  datasource:
+    driver-classe-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/payments2?allowPublicKeyRetrieval=true&autoReconnect=true
+    username: root
+    password: mdymen_pass
+  jpa:
+    show-sql: true
 
 server:
   port: 8081
+
+rabbitmq:
+  queue:
+    name: outbox-testing-queue
+
+
+
