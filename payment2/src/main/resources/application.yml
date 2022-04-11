@@ -19,5 +19,3 @@ rabbitmq:
   queue:
     name: outbox-testing-queue
 
-
-

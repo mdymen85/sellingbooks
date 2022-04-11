@@ -20,7 +20,6 @@ public class DynamoDBTables {
     private final DynamoDBMapper mapper;
     private final DynamoDB dynamoDb;
 
-    @EventListener(ApplicationReadyEvent.class)
     public void createDynamoDBTables() {
         try {
             System.out.println("Attempting to create table; please wait...");
@@ -28,7 +27,7 @@ public class DynamoDBTables {
                     Arrays.asList(new KeySchemaElement("uuid", KeyType.HASH), // Partition
                             // key
                             new KeySchemaElement("name", KeyType.RANGE)), // Sort key
-                    Arrays.asList(new AttributeDefinition("uuid", ScalarAttributeType.N),
+                    Arrays.asList(new AttributeDefinition("uuid", ScalarAttributeType.S),
                             new AttributeDefinition("name", ScalarAttributeType.S)),
                     new ProvisionedThroughput(10L, 10L));
             table.waitForActive();

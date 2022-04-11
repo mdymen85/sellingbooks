@@ -25,7 +25,7 @@ public class DynamoDbConfig {
     private String region;
 
 
-    @Bean(name = "amazonDynamoDB")
+    @Bean(name = "amazonDDBClient")
     public AmazonDynamoDB createConnection() {
         return AmazonDynamoDBClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(generateUrl(), region))

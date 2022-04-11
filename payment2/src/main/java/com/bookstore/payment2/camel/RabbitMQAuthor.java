@@ -1,6 +1,7 @@
 package com.bookstore.payment2.camel;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.bookstore.payment2.DynamoDBTables;
 import com.bookstore.payment2.model.Author;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -29,15 +30,19 @@ public class RabbitMQAuthor extends EndpointRouteBuilder {
 
     private final AmazonDynamoDB dynamoDb;
     private final ObjectMapper mapper;
+    private final DynamoDBTables tables;
 
     @Override
     public void configure() throws Exception {
+
+        tables.createDynamoDBTables();
 
         from("rabbitmq:amq.direct?queue=outbox-testing-queue&autoDelete=false")
                 .unmarshal().json(JsonLibrary.Jackson)
                 .process(new ProcessRabbitMQAuthor(mapper))
                 .log("log ${body}")
-                .to("aws2-ddb://Author?readCapacity=1&writeCapacity=1&useDefaultCredentialsProvider=true");
+                .to("aws2-ddb://Author?overrideEndpoint=true&uriEndpointOverride=http://localhost:8000&readCapacity=1&writeCapacity=1&useDefaultCredentialsProvider=true")
+                .end();
 //                .to("aws2-ddb://Author?keyAttributeName=uuid&keyAttributeType=" + KeyType.HASH
 //                + "&keyScalarType=" + ScalarAttributeType.S
 //                + "&readCapacity=1&writeCapacity=1&useDefaultCredentialsProvider=true");
@@ -60,9 +65,13 @@ class ProcessRabbitMQAuthor implements Processor {
             put("name", AttributeValue.builder().s(author.getName().toString()).build());
         }};
 
+
         exchange.getIn().setBody(map);
         exchange.getIn().setHeader("CamelAwsDdbAttributes", map);
         exchange.getIn().setHeader("CamelAwsDdbItems", map);
+        exchange.getIn().setHeader("CamelAwsDdbItem", map);
+
+       // exchange.getIn().setHeader("item", mapItens);
 //        exchange.getIn().setHeader(Ddb2Constants.ATTRIBUTE_NAMES, map.keySet());
 //        exchange.getIn().setHeader(Ddb2Constants.OPERATION, Ddb2Operations.PutItem);
 

@@ -19,8 +19,8 @@ public class RouteBooks extends RouteBuilder {
                 .to("jdbc:datasource")
                 .split(body()).streaming()
                 .process(new ProcessQuery())
-                .log("log ${in.headers.object_json}")
-                //.to("sql:delete from sb_outbox where uuid = :#${body}")
+                .log("log ${in.headers.uuid}")
+                .to("sql:delete from sb_outbox where uuid = :#uuid")
                 .marshal().json(JsonLibrary.Jackson)
                 .to("spring-rabbitmq:amq.fanout")
                 .end();
@@ -39,8 +39,5 @@ class ProcessQuery implements Processor {
         exchange.getIn().setBody(outbox.get("object_json"));
         exchange.getIn().setHeader("uuid", outbox.get("uuid").toString());
         exchange.getIn().setHeader("object_json", outbox.get("object_json").toString());
-//        LinkedHashMap outbox = (LinkedHashMap) exchange.getIn().getBody();
-//        var uuid = outbox.get("uuid");
-//        exchange.getIn().setBody(uuid);
     }
 }

@@ -1,0 +1,29 @@
+aws dynamodb --endpoint-url http://localhost:8000 create-table --table-name demo-customer-info \
+--attribute-definitions AttributeName=customerId,AttributeType=S --key-schema AttributeName=customerId,KeyType=HASH \
+--provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+
+
+
+
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name demo-customer-info \
+  --item '{"customerId": {"S": "1111"}, "email": {"S": "email@something.com"}}'
+  
+  
+  
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name demo-customer-info \
+  --item '{"customerId": {"S": "1111"}, "email": {"S": "someemail@something.com"}}' \
+  --condition-expression "attribute_not_exists(customerId)"
+  
+
+aws dynamodb put-item --endpoint-url http://localhost:8000 --table-name Author \
+  --item '{"name": {"S": "Bini"}, "uuid": {"S": "186005066032090897384425100215488071939"}}'
+  
+  
+  name=AttributeValue(S=Bini), uuid=AttributeValue(S=186005066032090897384425100215488071939)
+  
+  aws dynamodb get-item --endpoint-url http://localhost:8000 --table-name demo-customer-info --key '{"customerId": {"S": "1112"}}'
+  
+  aws dynamodb query --endpoint-url http://localhost:8000 --statement "SELECT * FROM Author'"
+
+  aws dynamodb scan --endpoint-url http://localhost:8000 --table-name Author
+  
