@@ -35,8 +35,8 @@ public class CreateAuthorService {
 	private final AuthorMapper authorMapper;
 	private final AuthorServiceRepository authorServiceRepository;
 
-	@Produce(uri = "direct:startQueuePoint")
-	private ProducerTemplate template;
+//	@Produce(uri = "direct:startQueuePoint")
+//	private ProducerTemplate template;
 
 	public AuthorCreated createAuthor(CreateAuthor createAuthor) {
 		
@@ -47,6 +47,10 @@ public class CreateAuthorService {
 		//template.asyncSendBody(template.getDefaultEndpoint(), author);
 
 		return this.authorMapper.to(author);
+	}
+
+	public void addBook() {
+
 	}
 	
 }

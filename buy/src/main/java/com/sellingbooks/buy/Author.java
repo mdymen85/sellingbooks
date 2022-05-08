@@ -15,5 +15,5 @@ public class Author {
     private String uuid;
 
     @DynamoDBRangeKey
-    private String range;
+    private String name;
 }

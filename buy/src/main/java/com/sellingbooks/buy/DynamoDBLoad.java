@@ -25,7 +25,7 @@ public class DynamoDBLoad {
     @EventListener(ApplicationReadyEvent.class)
     public void createDynamoDBTables() {
 
-        var author = mapper.load(Author.class, "296085799746551156908736067960360498680", "1");
+        var author = mapper.load(Author.class, "233213366013667932334575724438134257805", "Bini");
         log.info("Author {}", author);
     }
 

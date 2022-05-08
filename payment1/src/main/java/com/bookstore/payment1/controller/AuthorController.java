@@ -1,11 +1,9 @@
 package com.bookstore.payment1.controller;
 
+import com.bookstore.payment1.dto.CreateBook;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.bookstore.payment1.dto.AuthorCreated;
 import com.bookstore.payment1.dto.CreateAuthor;
@@ -27,5 +25,13 @@ public class AuthorController {
 		return new ResponseEntity<AuthorCreated>(authorCreated, HttpStatus.CREATED);
 		
 	}
+
+//	@RequestMapping(path = "/v1/author/{id}/book", method = RequestMethod.POST)
+//	public ResponseEntity<AuthorCreated> addBook(@PathVariable("id") String id, @RequestBody CreateBook createBook) {
+//
+//		var authorCreated = this.createAuthorService.addBook(createBook);
+//		return new ResponseEntity<AuthorCreated>(authorCreated, HttpStatus.CREATED);
+//
+//	}
 	
 }

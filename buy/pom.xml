@@ -43,6 +43,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.f4b6a3</groupId>
+			<artifactId>ulid-creator</artifactId>
+			<version>4.1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

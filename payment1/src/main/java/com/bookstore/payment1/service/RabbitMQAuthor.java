@@ -3,9 +3,11 @@ package com.bookstore.payment1.service;
 import com.bookstore.payment1.domain.Author;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile("!test")
 public class RabbitMQAuthor extends RouteBuilder {
 
     @Override
