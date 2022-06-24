@@ -3,6 +3,8 @@ package com.bookstore.payment1.service;
 import javax.persistence.EntityManager;
 
 import com.bookstore.payment1.domain.Author;
+import com.bookstore.payment1.dto.BooksCreated;
+import com.bookstore.payment1.dto.CreateBooks;
 import com.bookstore.payment1.repository.AuthorRepository;
 import com.bookstore.payment1.repository.AuthorServiceRepository;
 import org.apache.camel.ExchangePattern;
@@ -49,8 +51,9 @@ public class CreateAuthorService {
 		return this.authorMapper.to(author);
 	}
 
-	public void addBook() {
+	public BooksCreated addBooks(CreateBooks books) {
 
+		return null;
 	}
 	
 }

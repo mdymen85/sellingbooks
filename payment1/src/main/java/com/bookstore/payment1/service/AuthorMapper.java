@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.bookstore.payment1.dto.AuthorCreated;
+import com.github.f4b6a3.ulid.Ulid;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -31,7 +32,7 @@ public interface AuthorMapper {
 	AuthorCreated to(Author author);
 
 
-	default BigInteger uuid() {
-		return new BigInteger(String.format("%040d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16)));
+	default Ulid uuid() {
+		return UlidCreator.monotincUlid();
 	}
 }

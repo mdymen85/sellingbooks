@@ -11,12 +11,6 @@ spring:
   jpa:
     show-sql: true
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-
 hibernate:
   dialect: org.hibernate.dialect.H2Dialect
   hbm2ddl:
