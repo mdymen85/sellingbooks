@@ -11,6 +11,6 @@ import java.util.Optional;
 @Repository
 public interface AuthorRepository extends CrudRepository<AuthorEntity, Long> {
 
-    Optional<AuthorEntity> findByUuid(BigDecimal uuid);
+    Optional<AuthorEntity> findByUuid(String uuid);
 
 }

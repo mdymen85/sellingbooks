@@ -1,5 +1,6 @@
 package com.bookstore.payment1.service;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.UUID;
@@ -18,7 +19,7 @@ import com.bookstore.payment1.dto.CreateBook;
 public interface AuthorMapper {
 
 	@Mapping(source = "name", target = "name")
-	@Mapping(target = "id", expression = "java(uuid())")
+	@Mapping(target = "ulid", expression = "java(uuid())")
 	Author to(CreateAuthor createAuthor);
 	
 	@Mapping(source = "name", target = "name")
@@ -28,9 +29,9 @@ public interface AuthorMapper {
 	
 	List<Book> to(List<CreateBook> createBooks);
 
-
+	@Mapping(source = "name", target = "name")
+	@Mapping(source = "ulid", target = "id")
 	AuthorCreated to(Author author);
-
 
 	default Ulid uuid() {
 		return UlidCreator.monotincUlid();

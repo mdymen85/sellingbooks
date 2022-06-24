@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
+import com.github.f4b6a3.ulid.Ulid;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
@@ -15,13 +16,13 @@ public class AuthorCreated {
 
 	private final String name;
 
-	private final BigDecimal id;
+	private final Ulid id;
 
 	@Singular("book")
 	private final List<CreateBook> books;
 
 	@Builder
-	public AuthorCreated(String name, List<CreateBook> books, BigDecimal id) {
+	public AuthorCreated(String name, List<CreateBook> books, Ulid id) {
 		this.name = name;
 		this.books = books;
 		this.id = id;

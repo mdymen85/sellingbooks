@@ -1,5 +1,6 @@
 package com.bookstore.payment1.repository.model;
 
+import com.github.f4b6a3.ulid.Ulid;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,17 +21,16 @@ public class AuthorEntity {
 
     private String name;
 
-    @Column(name = "UUID", precision = 40, scale = 0)
-    private BigDecimal uuid;
+    private String uuid;
 
     @Singular
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Set<BookEntity> books;
 
     @Builder
-    public AuthorEntity(String name, Set<BookEntity> books, BigDecimal uuid) {
+    public AuthorEntity(String name, Set<BookEntity> books, Ulid uuid) {
         this.name = name;
         this.books = books;
-        this.uuid = uuid;
+        this.uuid = uuid.toString();
     }
 }

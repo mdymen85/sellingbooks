@@ -2,6 +2,7 @@ package com.bookstore.payment1.domain;
 
 import java.math.BigInteger;
 
+import com.github.f4b6a3.ulid.Ulid;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -9,11 +10,11 @@ import lombok.ToString;
 @ToString
 public class Book {
 
-	private final BigInteger id;
+	private final Ulid id;
 	private final String name;
 	private final int pages;
 	
-	public Book(BigInteger id, String name, int pages) {
+	public Book(Ulid id, String name, int pages) {
 		this.id = id;
 		this.name = name;
 		this.pages = pages;

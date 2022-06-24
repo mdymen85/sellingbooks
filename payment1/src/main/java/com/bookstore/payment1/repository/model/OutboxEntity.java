@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 @ToString
 @Entity
-@Table(name = "SB_OUTBOX")
+@Table(name = "sb_outbox")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,8 +18,9 @@ public class OutboxEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(precision = 40, scale = 0)
-    private BigDecimal uuid;
+    private String uuid;
+
+    @Column(name = "object_json")
     private String objectJson;
 
 }

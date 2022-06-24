@@ -41,7 +41,7 @@ public class AuthorServiceRepository {
         }
     }
 
-    public Author findAuthor(BigDecimal id) {
+    public Author findAuthor(String id) {
         Optional<AuthorEntity> optAuthorEntity = this.authorRepository.findByUuid(id);
         if (!optAuthorEntity.isPresent()) {
             throw new IllegalStateException();

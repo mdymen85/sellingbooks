@@ -32,7 +32,7 @@ public class AuthorServiceTest {
         assertEquals(authorCreated.getName(), createAuthor.getName());
         assertNotNull(authorCreated.getId());
 
-        var authorEntity = this.authorRepository.findByUuid(authorCreated.getId()).get();
+        var authorEntity = this.authorRepository.findByUuid(authorCreated.getId().toString()).get();
 
         assertEquals(authorCreated.getBooks().size(), 0);
         assertEquals(authorCreated.getName(), authorEntity.getName());
@@ -61,7 +61,7 @@ public class AuthorServiceTest {
 
         var authorCreated = this.authorDelegate.createAuthor(author);
 
-        var authorEntity = this.authorRepository.findByUuid(authorCreated.getId()).get();
+        var authorEntity = this.authorRepository.findByUuid(authorCreated.getId().toString()).get();
 
         var bookEntity1 = authorEntity
                 .getBooks()
