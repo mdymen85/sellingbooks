@@ -11,7 +11,7 @@
 	<groupId>com.bookstore</groupId>
 	<artifactId>payment1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>register</name>
+	<name>payment1</name>
 	<description>Selling books online</description>
 	<properties>
 		<java.version>11</java.version>

@@ -16,7 +16,7 @@ public class AuthorCreated {
 
 	private final String name;
 
-	private final Ulid id;
+	private final String id;
 
 	@Singular("book")
 	private final List<CreateBook> books;
@@ -25,7 +25,7 @@ public class AuthorCreated {
 	public AuthorCreated(String name, List<CreateBook> books, Ulid id) {
 		this.name = name;
 		this.books = books;
-		this.id = id;
+		this.id = id.toString();
 	}
 	
 }

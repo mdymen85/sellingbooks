@@ -25,12 +25,13 @@ public class AuthorEntity {
 
     @Singular
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinColumn(name="author_id")
     private Set<BookEntity> books;
 
     @Builder
-    public AuthorEntity(String name, Set<BookEntity> books, Ulid uuid) {
+    public AuthorEntity(String name, Set<BookEntity> books, String uuid) {
         this.name = name;
         this.books = books;
-        this.uuid = uuid.toString();
+        this.uuid = uuid;
     }
 }

@@ -13,11 +13,13 @@ public class Book {
 	private final Ulid id;
 	private final String name;
 	private final int pages;
+	private final Long stock;
 	
-	public Book(Ulid id, String name, int pages) {
+	public Book(Ulid id, String name, int pages, Long stock) {
 		this.id = id;
 		this.name = name;
 		this.pages = pages;
+		this.stock = stock;
 	}
 	
 }

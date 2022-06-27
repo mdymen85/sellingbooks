@@ -13,7 +13,7 @@ class BuyApplicationTests {
 	@Test
 	void contextLoads() {
 
-		int x = 2191064382;
+		long x = 2191064382L;
 
 		var ulid = ulidCreator.monotincUlid();
 		var ulid2 = ulidCreator.monotincUlid();

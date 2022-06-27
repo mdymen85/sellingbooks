@@ -12,7 +12,7 @@ import lombok.*;
 public class CreateAuthor {
 	
 	private String name;
-	
+
 	@Singular("book")
 	private List<CreateBook> books;
 	

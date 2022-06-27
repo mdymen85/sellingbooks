@@ -6,11 +6,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.*;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Set;
 
 @DynamoDBTable(tableName="Author")
 @Data
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Author {
 
 	@DynamoDBHashKey
@@ -18,5 +21,7 @@ public class Author {
 
 	@DynamoDBRangeKey
 	private String name;
+
+	private List<Book> books;
 
 }

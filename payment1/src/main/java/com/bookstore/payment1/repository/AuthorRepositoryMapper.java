@@ -16,6 +16,7 @@ public interface AuthorRepositoryMapper {
 
     @Mapping(target = "name", source = "name")
     @Mapping(target = "uuid", expression = "java(convert(author.getUlid()))")
+    @Mapping(target= "books", source = "books")
     AuthorEntity to(Author author);
 
     default String convert(Ulid id) {
@@ -25,6 +26,7 @@ public interface AuthorRepositoryMapper {
     @Mapping(target = "name", source = "name")
     @Mapping(target = "pages", source = "pages")
     @Mapping(target = "uuid", source = "id")
+    @Mapping(target = "stock", source = "stock")
     BookEntity to(Book book);
 
     List<BookEntity> to(List<Book> books);
@@ -36,6 +38,7 @@ public interface AuthorRepositoryMapper {
     @Mapping(source = "name", target = "name")
     @Mapping(source = "pages", target = "pages")
     @Mapping(expression = "java(convertToUlid(bookEntity.getUuid()))", target = "id")
+    @Mapping(target= "stock", source = "stock")
     Book to(BookEntity bookEntity);
 
     default Ulid convertToUlid(String uuid) {

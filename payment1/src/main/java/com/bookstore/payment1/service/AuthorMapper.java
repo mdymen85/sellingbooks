@@ -25,6 +25,7 @@ public interface AuthorMapper {
 	@Mapping(source = "name", target = "name")
 	@Mapping(source = "pages", target = "pages")
 	@Mapping(target = "id", expression = "java(uuid())")
+	@Mapping(source = "stock", target = "stock")
 	Book to(CreateBook createBook);
 	
 	List<Book> to(List<CreateBook> createBooks);

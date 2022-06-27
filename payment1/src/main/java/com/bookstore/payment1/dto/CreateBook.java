@@ -1,17 +1,16 @@
 package com.bookstore.payment1.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateBook {
 
-	private final String name;
-	private final int pages;
+	private String name;
+	private int pages;
+	private Long stock;
 	
 }

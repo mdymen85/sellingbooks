@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,12 +60,13 @@ class ProcessRabbitMQAuthor implements Processor {
     public void process(Exchange exchange) throws Exception {
         var authorString = exchange.getIn().getBody(String.class);
         var author = mapper.readValue(authorString, Author.class);
+        var books = mapper.writeValueAsString(author.getBooks());
 
         Map<String, AttributeValue> map = new HashMap<String, AttributeValue>() {{
             put("uuid", AttributeValue.builder().s(author.getUuid().toString()).build());
             put("name", AttributeValue.builder().s(author.getName().toString()).build());
+            put("books", AttributeValue.builder().s(books.toString()).build());
         }};
-
 
         exchange.getIn().setBody(map);
         exchange.getIn().setHeader("CamelAwsDdbAttributes", map);

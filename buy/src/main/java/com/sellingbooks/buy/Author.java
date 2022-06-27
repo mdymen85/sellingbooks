@@ -6,6 +6,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @DynamoDBTable(tableName="Author")
 @Data
 @ToString
@@ -16,4 +18,6 @@ public class Author {
 
     @DynamoDBRangeKey
     private String name;
+
+    private String books;
 }

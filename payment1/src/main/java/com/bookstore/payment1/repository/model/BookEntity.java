@@ -13,7 +13,7 @@ import java.math.BigInteger;
 @Data
 @ToString
 @Entity
-@Table(name = "SB_BOOKS")
+@Table(name = "sb_books")
 @NoArgsConstructor
 public class BookEntity {
 
@@ -23,14 +23,16 @@ public class BookEntity {
 
     private String name;
     private int pages;
+    private Long stock;
 
-    @Column(name = "UUID", precision = 40, scale = 0)
+    @Column(name = "UUID")
     private String uuid;
 
     @Builder
-    public BookEntity(String name, int pages, Ulid uuid) {
+    public BookEntity(String name, int pages, Ulid uuid, Long stock) {
         this.name = name;
         this.pages = pages;
         this.uuid = uuid.toString();
+        this.stock = stock;
     }
 }

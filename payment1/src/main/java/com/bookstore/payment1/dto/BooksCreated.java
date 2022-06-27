@@ -13,6 +13,7 @@ public class BooksCreated {
 
     private BigInteger id;
     private String name;
+    private Long stock;
 
     @Singular("book")
     private final List<CreateBook> books;
