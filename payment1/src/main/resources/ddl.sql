@@ -46,7 +46,6 @@ create table if not exists st_sell
     primary key,
     book_id  varchar(100) not null,
     quantity int          not null,
-    bought   datetime     not null,
-    constraint st_sell_book_id_uindex
-    unique (book_id)
+    bought   datetime     not null
     );
+
