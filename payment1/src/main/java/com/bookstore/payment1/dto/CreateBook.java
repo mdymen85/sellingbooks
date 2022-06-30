@@ -12,5 +12,6 @@ public class CreateBook {
 	private String name;
 	private int pages;
 	private Long stock;
+	private String uuid;
 	
 }

@@ -10,13 +10,13 @@ import lombok.ToString;
 @ToString
 public class Book {
 
-	private final Ulid id;
+	private final Ulid uuid;
 	private final String name;
 	private final int pages;
 	private final Long stock;
 	
-	public Book(Ulid id, String name, int pages, Long stock) {
-		this.id = id;
+	public Book(Ulid uuid, String name, int pages, Long stock) {
+		this.uuid = uuid;
 		this.name = name;
 		this.pages = pages;
 		this.stock = stock;

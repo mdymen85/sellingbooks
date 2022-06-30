@@ -25,7 +25,7 @@ public interface AuthorRepositoryMapper {
 
     @Mapping(target = "name", source = "name")
     @Mapping(target = "pages", source = "pages")
-    @Mapping(target = "uuid", source = "id")
+    @Mapping(target = "uuid", source = "uuid")
     @Mapping(target = "stock", source = "stock")
     BookEntity to(Book book);
 
@@ -37,7 +37,7 @@ public interface AuthorRepositoryMapper {
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "pages", target = "pages")
-    @Mapping(expression = "java(convertToUlid(bookEntity.getUuid()))", target = "id")
+    @Mapping(expression = "java(convertToUlid(bookEntity.getUuid()))", target = "uuid")
     @Mapping(target= "stock", source = "stock")
     Book to(BookEntity bookEntity);
 

@@ -33,7 +33,7 @@ public class AuthorMapperTest {
 		
 		assertEquals(createBook.getName(), book.getName());
 		assertEquals(createBook.getPages(), book.getPages());
-		assertNotNull(book.getId());
+		assertNotNull(book.getUuid());
 
 	}
 
@@ -78,7 +78,7 @@ public class AuthorMapperTest {
 
 		assertEquals(bookCreated1.getPages(), book1.getPages());
 		assertEquals(bookCreated1.getName(), book1.getName());
-		assertNotNull(bookCreated1.getId());
+		assertNotNull(bookCreated1.getUuid());
 
 		var bookCreated2 = author.getBooks().stream()
 				.filter(b -> b.getName().equals(book2.getName()))
@@ -87,7 +87,7 @@ public class AuthorMapperTest {
 
 		assertEquals(bookCreated2.getPages(), book2.getPages());
 		assertEquals(bookCreated2.getName(), book2.getName());
-		assertNotNull(bookCreated2.getId());
+		assertNotNull(bookCreated2.getUuid());
 
 	}
 }

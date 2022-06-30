@@ -24,11 +24,32 @@ public interface AuthorMapper {
 	
 	@Mapping(source = "name", target = "name")
 	@Mapping(source = "pages", target = "pages")
-	@Mapping(target = "id", expression = "java(uuid())")
+	@Mapping(target = "uuid", expression = "java(uuid())")
 	@Mapping(source = "stock", target = "stock")
 	Book to(CreateBook createBook);
 	
-	List<Book> to(List<CreateBook> createBooks);
+	List<Book> toCreateBooks(List<CreateBook> createBooks);
+
+//	private final Ulid id;
+//	private final String name;
+//	private final int pages;
+//	private final Long stock;
+//
+//	private String name;
+//	private int pages;
+//	private Long stock;
+//	private String uuid;
+	@Mapping(target="name", source="name")
+	@Mapping(target="pages", source = "pages")
+	@Mapping(target="stock", source = "stock")
+	@Mapping(target="uuid", expression = "java(toString(book.getUuid()))")
+	CreateBook to(Book book);
+
+	default String toString(Ulid ulid) {
+		return ulid.toString();
+	}
+
+	List<CreateBook> to(List<Book> books);
 
 	@Mapping(source = "name", target = "name")
 	@Mapping(source = "ulid", target = "id")
